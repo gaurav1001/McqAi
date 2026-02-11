@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875560828882",
+    "project_id": "mcqai-dabd5",
+    "storage_bucket": "mcqai-dabd5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875560828882:android:a0bf5050ea2b67f547520b",
+        "android_client_info": {
+          "package_name": "guru.mcqai.www"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC09tDH0LAdex4-2cIkzFF25oLfs2YisJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
