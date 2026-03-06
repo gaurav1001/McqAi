@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 
 
 import dagger.hilt.android.AndroidEntryPoint
 import guru.mcqai.www.databinding.FragmentHomeScreenBinding
 import guru.mcqai.www.utility.AlertBox
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeScreen : Fragment() {
 
+    val viewmodel : McqGenerateViewmodel by activityViewModels()
     lateinit var binding: FragmentHomeScreenBinding
 
     override fun onCreateView(
@@ -28,6 +34,12 @@ class HomeScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED){
+                viewmodel.updateToIdleState()
+            }
+        }
 
         binding.fabBtn.setOnClickListener {
             val getContent = binding.textInputEditText.text.toString()

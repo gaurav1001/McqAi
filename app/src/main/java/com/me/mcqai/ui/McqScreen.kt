@@ -104,7 +104,7 @@ class McqScreen() : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.updateToIdleState()
+
     }
 
 
