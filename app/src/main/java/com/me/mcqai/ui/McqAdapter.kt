@@ -19,6 +19,7 @@ class McqAdapter(
 
 
 
+
   inner  class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val question: TextView = view.findViewById(R.id.question)
         val optionA: RadioButton = view.findViewById(R.id.optionA)
@@ -37,7 +38,7 @@ class McqAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val isSelected = true
+
         val item = dataSet[position]
         viewHolder.apply {
             question.text = item.question
@@ -46,40 +47,49 @@ class McqAdapter(
             optionC.text = item.option[2]
             optionD.text = item.option[3]
             correctAnswer.text = item.answer
-            optionsGroup.clearCheck()
             answerLayout.visibility = View.GONE
 
-            // Clear listener to avoid trigger on recycling
+
             optionsGroup.setOnCheckedChangeListener(null)
 
+            val selectedId = when(item.selectionId){
+                0 -> R.id.optionA
+                1 -> R.id.optionB
+                2 -> R.id.optionC
+                3 -> R.id.optionD
+                else -> -1  // No selection
+            }
+
+            if (selectedId != -1){
+                optionsGroup.check(selectedId)
+                answerLayout.visibility = View.VISIBLE
+            }else{
+                optionsGroup.clearCheck()
+            }
+
+            optionsGroup.setOnCheckedChangeListener { _,checkedId ->
+
+                val selectedIndex = when (checkedId) {
+                    R.id.optionA -> 0
+                    R.id.optionB -> 1
+                    R.id.optionC -> 2
+                    R.id.optionD -> 3
+                    else -> -1
+                }
+
+                // Save selection state
+                item.selectionId = selectedIndex
 
 
-            optionsGroup.setOnCheckedChangeListener { _, _ ->
-                when (optionsGroup.checkedRadioButtonId) {
-                    R.id.optionA -> {
-                        if (correctAnswer.text == item.option[0]){
-                            this@McqAdapter.itemClickListener(1)
-
-                        }
-                    }
-                    R.id.optionB -> {
-                        if (correctAnswer.text == item.option[1]){
-                            this@McqAdapter.itemClickListener(1)
-                        }
-                    }
-                    R.id.optionC -> {
-                        if(correctAnswer.text == item.option[2]){
-                            this@McqAdapter.itemClickListener(1)
-                        }
-                    }
-                    R.id.optionD -> {
-                        if (correctAnswer.text == item.option[3]){
-                            this@McqAdapter.itemClickListener(1)
-                        }
+                // Check correct answer
+                if (selectedIndex != -1) {
+                    if (item.option[selectedIndex] == item.answer) {
+                        this@McqAdapter.itemClickListener(1)
+                    }else{
+                        this@McqAdapter.itemClickListener(0)
                     }
                 }
 
-                answerLayout.visibility = View.VISIBLE
             }
         }
     }

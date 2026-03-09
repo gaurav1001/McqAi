@@ -8,17 +8,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
+
     <EditText
         android:id="@+id/textInputEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:gravity="top"
         android:hint="Hey paste your context here..."
         android:inputType="textMultiLine"
-        android:gravity="top"
-        android:textSize="20sp"
         android:singleLine="false"
-        android:background="@android:color/transparent"
-        />
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabBtn"
@@ -28,20 +30,24 @@
         android:layout_margin="8dp"
         android:text="Generate Mcq"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:icon="@drawable/outline_bolt_24"
+        android:backgroundTint="@color/brand_primary"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/eraseFabBtn"
-        style="?attr/floatingActionButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:contentDescription="Erase"
-        app:srcCompat="@drawable/outline_content_cut_24"
+        android:src="@drawable/outline_content_cut_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fabBtn"
-
-
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
          />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

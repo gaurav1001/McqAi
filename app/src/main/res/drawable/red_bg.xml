@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Green Circle -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#EB3223"/>
+        </shape>
+    </item>
+
+    <!-- White Tick -->
+    <item
+        android:drawable="@drawable/outline_close_small_24"
+        android:gravity="center"/>
+
+</layer-list>

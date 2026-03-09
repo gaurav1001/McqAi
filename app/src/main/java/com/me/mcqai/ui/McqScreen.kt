@@ -14,16 +14,20 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.me.mcqai.ui.BottomSheetResultFragment
 import dagger.hilt.android.AndroidEntryPoint
 import guru.mcqai.www.databinding.FragmentMcqScreenBinding
+import guru.mcqai.www.model.Mcq
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class McqScreen() : Fragment() {
 
     val viewModel: McqGenerateViewmodel by activityViewModels()
+    private lateinit var adapter: McqAdapter
     val args: McqScreenArgs by navArgs()
 
+    var score = 0
     private lateinit var binding: FragmentMcqScreenBinding
 
     override fun onCreateView(
@@ -40,8 +44,13 @@ class McqScreen() : Fragment() {
 
         val content = args.data
 
-        Log.d("TAG", "onViewCreated: $content")
 
+
+        adapter = McqAdapter(emptyList()){
+            viewModel.updateScore(it)
+        }
+
+        binding.mcqRecycler.adapter = adapter
 
 
         lifecycleScope.launch {
@@ -53,7 +62,8 @@ class McqScreen() : Fragment() {
 
                         is McqUiState.Idle ->{
                             if (content == null) return@collect
-                            viewModel.generateQuestions(content)
+                           viewModel.generateQuestions(content)
+
                         }
 
                         is McqUiState.Loading ->{
@@ -65,11 +75,15 @@ class McqScreen() : Fragment() {
                         is McqUiState.Success -> {
 
                             binding.mcqRecycler.visibility = View.VISIBLE
-                            val adapter = state.list?.let { McqAdapter(it){score->
-                                viewModel.updateScore(score)
-                             }
+
+                            adapter = McqAdapter(
+                                state.list ?: emptyList()
+                            ){ result->
+                                score = result
                             }
-                            binding.mcqRecycler.adapter = adapter
+
+                                binding.mcqRecycler.adapter = adapter
+                                binding.loadingImg.visibility = View.GONE
 
                         }
                         is McqUiState.Error -> {
@@ -94,10 +108,19 @@ class McqScreen() : Fragment() {
 
         }
 
-        binding.fabBtn.setOnClickListener {
-            findNavController().popBackStack()
-            findNavController().navigate(R.id.scoreScreen)
 
+       binding.endBtn.setOnClickListener {
+           findNavController().popBackStack()
+           findNavController().navigate(R.id.scoreScreen)
+       }
+
+        binding.submitBtn.setOnClickListener {
+          lifecycleScope.launch {
+              viewModel.updateScore(score)
+              val result = score
+              val bottomSheet = BottomSheetResultFragment.instance(result)
+              bottomSheet.show(childFragmentManager, "ModelBottomSheet")
+          }
         }
 
     }

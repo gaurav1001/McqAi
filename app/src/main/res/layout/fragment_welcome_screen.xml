@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.me.mcqai.ui.WelcomeScreen">
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/mcq_logo"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <ImageView
+        android:id="@+id/heroImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hero_pic"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heroImg"
+        android:text="Generate MCQs instantly"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="32sp"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:text="With McqAI, you can create MCQs on any topic on the go."
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subTitle"
+        android:text="Get Started"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        />
+
+</RelativeLayout>

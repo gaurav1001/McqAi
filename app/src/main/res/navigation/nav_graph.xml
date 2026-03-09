@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeScreen_to_mcqScreen"
             app:destination="@id/mcqScreen" />
+        <action
+            android:id="@+id/action_homeScreen_to_welcomeScreen"
+            app:destination="@id/welcomeScreen" />
     </fragment>
     <fragment
         android:id="@+id/mcqScreen"
@@ -24,14 +27,36 @@
             app:argType="string"
             app:nullable="true"
             />
+
         <action
             android:id="@+id/action_mcqScreen_to_scoreScreen"
             app:destination="@id/scoreScreen" />
+        <action
+            android:id="@+id/action_mcqScreen_to_bottomSheetResultFragment"
+            app:destination="@id/bottomSheetResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/scoreScreen"
         android:name="guru.mcqai.www.ScoreScreen"
         android:label="fragment_score_screen"
         tools:layout="@layout/fragment_score_screen" >
+    </fragment>
+    <dialog
+        android:id="@+id/bottomSheetResultFragment"
+        android:name="com.me.mcqai.ui.BottomSheetResultFragment"
+        android:label="fragment_bottom_sheet_result"
+        tools:layout="@layout/fragment_bottom_sheet_result" />
+    <fragment
+        android:id="@+id/welcomeScreen"
+        android:name="com.me.mcqai.ui.WelcomeScreen"
+        android:label="fragment_welcome_screen"
+        tools:layout="@layout/fragment_welcome_screen" >
+        <action
+            android:id="@+id/action_welcomeScreen_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen"
+            app:popUpToInclusive="true" />
+
+
     </fragment>
 </navigation>

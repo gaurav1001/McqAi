@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.me.mcqai.ui.SetupViewModel
 
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +22,8 @@ import kotlinx.coroutines.launch
 class HomeScreen : Fragment() {
 
     val viewmodel : McqGenerateViewmodel by activityViewModels()
+
+    val setupViewModel: SetupViewModel by activityViewModels()
     lateinit var binding: FragmentHomeScreenBinding
 
     override fun onCreateView(
@@ -34,6 +37,17 @@ class HomeScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                setupViewModel.isSetupCompleted.collect {
+                    if (!it){
+                        findNavController().navigate(R.id.action_homeScreen_to_welcomeScreen)
+                    }
+                }
+                }
+        }
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED){

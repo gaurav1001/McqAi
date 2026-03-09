@@ -34,7 +34,8 @@ class McqGenerateViewmodel @Inject constructor (
         viewModelScope.launch {
             _mcqUiState.value = McqUiState.Loading()
             try {
-                val result = aiRemoteRepo.convertContextIntoMcq(userContent) ?: return@launch
+                val result = aiRemoteRepo.convertContextIntoMcq(userContent) ?: return@launch //network call
+
                 _mcqUiState.value = McqUiState.Success(result)
                 _mcqScore.value = 0
 

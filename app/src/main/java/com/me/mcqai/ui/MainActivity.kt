@@ -1,14 +1,23 @@
 package guru.mcqai.www
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import guru.mcqai.www.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+
+val SETUP_COMPLETED = booleanPreferencesKey("setup_completed")
+val Context.setupDataStore: DataStore<Preferences> by preferencesDataStore(name = "setup")
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
