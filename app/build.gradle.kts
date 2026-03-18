@@ -18,8 +18,8 @@ android {
         applicationId = "guru.mcqai.www"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 5
+        versionName = "5.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -60,6 +60,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:5.0.5")
 
     implementation("com.google.dagger:hilt-android:2.57.1")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     ksp("com.google.dagger:hilt-android-compiler:2.57.1")
 
 
