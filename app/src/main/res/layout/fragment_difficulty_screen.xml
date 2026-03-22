@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.me.mcqai.ui.ExamSelectionScreen">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/mcq_logo"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:text="Choose Difficulty:"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="32sp"
+        android:layout_margin="10dp"
+        />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_margin="10dp"
+        >
+
+        <RadioButton
+            android:id="@+id/optionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Easy"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:padding="10dp"
+            />
+
+        <RadioButton
+            android:id="@+id/optionB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:padding="10dp"
+            />
+
+        <RadioButton
+            android:id="@+id/optionC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hard"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:padding="10dp"
+            />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*This selection help us to generate MCQ’s based on that."
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:layout_above="@id/continueBtn"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+
+        />
+
+
+</RelativeLayout>

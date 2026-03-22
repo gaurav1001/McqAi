@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 
 class WelcomeScreen : Fragment() {
 
-    val viewmodel: SetupViewModel by activityViewModels()
     private lateinit var binding: FragmentWelcomeScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +39,7 @@ class WelcomeScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.continueBtn.setOnClickListener {
-            lifecycleScope.launch {
-                viewmodel.updateSetupCompleted(true)
-                findNavController().navigate(R.id.action_welcomeScreen_to_homeScreen)
-            }
+            findNavController().navigate(R.id.examSelectionScreen)
         }
     }
 

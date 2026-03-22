@@ -1,6 +1,7 @@
 package guru.mcqai.www
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.me.mcqai.ui.SetupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import guru.mcqai.www.databinding.FragmentHomeScreenBinding
 import guru.mcqai.www.utility.AlertBox
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -38,16 +40,6 @@ class HomeScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                setupViewModel.isSetupCompleted.collect {
-                    if (!it){
-                        findNavController().navigate(R.id.action_homeScreen_to_welcomeScreen)
-                    }
-                }
-                }
-        }
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED){

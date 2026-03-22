@@ -7,7 +7,7 @@ plugins {
     id("androidx.navigation.safeargs")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-
+    alias(libs.plugins.android.protobuf)
 }
 
 android {
@@ -22,6 +22,22 @@ android {
         versionName = "5.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    protobuf {
+        protoc {
+            artifact = "com.google.protobuf:protoc:4.32.1"
+        }
+        generateProtoTasks {
+            all().forEach { task ->
+                task.builtins {
+                    create("java"){
+                        option("lite")
+                    }
+                    create("kotlin")
+                }
+            }
+        }
     }
 
     buildTypes {
@@ -53,9 +69,16 @@ android {
 
 dependencies {
 
+    //Proto DataStore
+
+
     // Preferences DataStore (SharedPreferences like APIs)
 
     implementation(libs.androidx.datastore)
+    implementation(libs.androidx.proto)
+
+
+    implementation(libs.protobuf.kotlin.lite)
 
     implementation("com.github.bumptech.glide:glide:5.0.5")
 

@@ -5,6 +5,7 @@ plugins {
     id("com.google.gms.google-services") version "4.4.4" apply false
     id("com.google.devtools.ksp") version "2.1.20-1.0.31" apply false
     id("com.google.dagger.hilt.android") version "2.57.1" apply false
+    alias(libs.plugins.android.protobuf) apply false
 }
 
 buildscript{
